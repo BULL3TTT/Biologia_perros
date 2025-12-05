@@ -1,0 +1,70 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="header">
+      <h1>Cuestionario de Biología</h1>
+      <p class="subtitle">Por favor completa tus datos para comenzar</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre Completo</mat-label>
+        <input matInput formControlName="nombreCompleto" placeholder="Ej: Juan Pérez García">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="registerForm.get('nombreCompleto')?.hasError('required') && registerForm.get('nombreCompleto')?.touched">
+          Este campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('nombreCompleto')?.hasError('minlength') && registerForm.get('nombreCompleto')?.touched">
+          El nombre debe tener al menos 3 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Grado</mat-label>
+        <mat-select formControlName="grado">
+          <mat-option value="1">1°</mat-option>
+          <mat-option value="2">2°</mat-option>
+          <mat-option value="3">3°</mat-option>
+          <mat-option value="4">4°</mat-option>
+          <mat-option value="5">5°</mat-option>
+          <mat-option value="6">6°</mat-option>
+        </mat-select>
+        <mat-icon matPrefix>school</mat-icon>
+        <mat-error *ngIf="registerForm.get('grado')?.hasError('required') && registerForm.get('grado')?.touched">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Grupo</mat-label>
+        <input matInput formControlName="grupo" placeholder="Ej: A, B, C">
+        <mat-icon matPrefix>group</mat-icon>
+        <mat-error *ngIf="registerForm.get('grupo')?.hasError('required') && registerForm.get('grupo')?.touched">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correo Institucional</mat-label>
+        <input matInput type="email" formControlName="correoInstitucional" placeholder="ejemplo@institucion.edu.mx">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="registerForm.get('correoInstitucional')?.hasError('required') && registerForm.get('correoInstitucional')?.touched">
+          Este campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('correoInstitucional')?.hasError('email') && registerForm.get('correoInstitucional')?.touched">
+          Correo electrónico inválido
+        </mat-error>
+      </mat-form-field>
+
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        class="submit-button"
+        [disabled]="isLoading || registerForm.invalid">
+        <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
+        <span *ngIf="!isLoading">Comenzar Cuestionario</span>
+      </button>
+    </form>
+  </div>
+</div>
+

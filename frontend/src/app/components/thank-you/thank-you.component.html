@@ -1,0 +1,43 @@
+<div class="thank-you-container">
+  <div class="thank-you-card">
+    <div class="success-icon">
+      <mat-icon>check_circle</mat-icon>
+    </div>
+
+    <h1>¡Gracias por completar el cuestionario!</h1>
+    <p class="subtitle">Tu evaluación ha sido registrada exitosamente</p>
+
+    <div class="score-section">
+      <div class="score-circle" [style.border-color]="getScoreColor()">
+        <div class="score-value" [style.color]="getScoreColor()">
+          {{ getScorePercentage().toFixed(1) }}%
+        </div>
+      </div>
+      <h2 class="score-message" [style.color]="getScoreColor()">
+        {{ getScoreMessage() }}
+      </h2>
+      <div class="score-details">
+        <div class="detail-item">
+          <span class="label">Respuestas correctas:</span>
+          <span class="value">{{ score?.correct_answers }}/{{ score?.total_questions }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Puntuación:</span>
+          <span class="value">{{ getScorePercentage().toFixed(2) }}%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-info" *ngIf="userData">
+      <p><strong>Nombre:</strong> {{ userData.nombreCompleto }}</p>
+      <p><strong>Grado:</strong> {{ userData.grado }}°</p>
+      <p><strong>Grupo:</strong> {{ userData.grupo }}</p>
+      <p><strong>Correo:</strong> {{ userData.correoInstitucional }}</p>
+    </div>
+
+    <button type="button" class="home-button" (click)="goHome()">
+      Volver al inicio
+    </button>
+  </div>
+</div>
+

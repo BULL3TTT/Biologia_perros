@@ -1,0 +1,104 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Paleta de colores con más contraste
+$primary-dark: #002d6c;
+$primary-medium: #0050b0;
+$primary-button: #0066cc; // Botón más oscuro para mejor legibilidad
+$primary-light: #0073e6; // Azul más saturado
+$cream: #fffbf2;
+$white: #ffffff;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, $primary-dark 0%, $primary-medium 50%, $primary-button 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: $white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 45, 108, 0.15), 0 2px 8px rgba(0, 45, 108, 0.1);
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 80, 176, 0.1);
+}
+
+.btn-primary {
+  background: $primary-button;
+  color: $white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+  
+  &:hover {
+    background: $primary-medium;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 80, 176, 0.4);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    
+    &:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+  }
+  
+  .error-message {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+}
+

@@ -1,0 +1,59 @@
+<div class="questions-container">
+  <div class="questions-header">
+    <h1>Cuestionario de Biología</h1>
+    <div class="progress-info">
+      <span class="progress-text">
+        Pregunta {{ getCurrentQuestionNumber() }} de {{ getTotalQuestions() }}
+      </span>
+    </div>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" [style.width.%]="getProgressPercentage()"></div>
+  </div>
+
+  <div class="questions-content">
+    <div class="question-card">
+      <h3 class="question-title">
+        <span class="question-number">Pregunta {{ getCurrentQuestionNumber() }}</span>
+        {{ getCurrentQuestion().text }}
+      </h3>
+      
+      <div class="options-container">
+        <button
+          *ngFor="let option of getCurrentQuestion().options"
+          type="button"
+          class="option-button"
+          [class.selected]="isAnswerSelected(getCurrentQuestion().id, option)"
+          (click)="selectAnswer(getCurrentQuestion().id, option)">
+          <mat-icon class="radio-icon">
+            {{ isAnswerSelected(getCurrentQuestion().id, option) ? 'radio_button_checked' : 'radio_button_unchecked' }}
+          </mat-icon>
+          <span>{{ option }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="navigation-controls">
+    <button
+      *ngIf="!isLastQuestion()"
+      type="button"
+      (click)="nextQuestion()"
+      [disabled]="!canGoNext()"
+      class="next-button">
+      Siguiente
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+
+    <button
+      *ngIf="isLastQuestion()"
+      type="button"
+      (click)="submitAnswers()"
+      [disabled]="!canSubmit() || isLoading"
+      class="submit-button">
+      <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
+      <span *ngIf="!isLoading">Enviar Respuestas</span>
+    </button>
+  </div>
+</div>

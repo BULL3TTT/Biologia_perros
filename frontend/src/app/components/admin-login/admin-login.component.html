@@ -1,0 +1,40 @@
+<div class="admin-login-container">
+  <div class="login-card">
+    <div class="header">
+      <mat-icon class="admin-icon">admin_panel_settings</mat-icon>
+      <h1>Panel de Administrador</h1>
+      <p class="subtitle">Ingresa tus credenciales para acceder</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="username" placeholder="Usuario">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="Contraseña">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        class="submit-button"
+        [disabled]="isLoading || loginForm.invalid">
+        <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
+        <span *ngIf="!isLoading">Iniciar Sesión</span>
+      </button>
+    </form>
+  </div>
+</div>
+
